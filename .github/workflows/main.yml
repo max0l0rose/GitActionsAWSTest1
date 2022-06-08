@@ -105,7 +105,7 @@ jobs:
         run : |
             aws elasticbeanstalk create-application-version \
             --application-name ${{ env.EB_APPNAME }} \
-            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="target/GitActionsAWSTest1-0.0.1-SNAPSHOT.jar" \
+            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="GitActionsAWSTest1-0.0.1-SNAPSHOT.jar" \
             --version-label "Ver-${{ github.sha }}" \
             --description "Commit ${{ github.sha }}"
 
