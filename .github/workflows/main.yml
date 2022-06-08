@@ -19,6 +19,8 @@ env:
                                           # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: MYCONTAINERNAME           # set this to the name of the container in the
                                           # containerDefinitions section of your task definition
+
+  aws-secret-access-key: jQI5xTjS4zAvbAt4+aE6lsXRkT+ZfqIQF4gBWozn
   BUCKET_NAME: gitactions2
   EB_APPNAME: gitapp1
 
@@ -57,7 +59,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: AKIA4KFLILHHA67QZDX5
-          aws-secret-access-key: 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
+          aws-secret-access-key: ${{ aws-secret-access-key }}
           aws-region: ${{ env.AWS_REGION }}
 
 #      - name: Login to Amazon ECR
@@ -103,7 +105,7 @@ jobs:
         run : |
             aws elasticbeanstalk create-application-version \
             --application-name ${{ env.EB_APPNAME }} \
-            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="${{ env.BUCKET_NAME }}" \
+            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="${{ aws-secret-access-key }}" \
             --version-label "Ver-${{ github.sha }}" \
             --description "Commit ${{ github.sha }}"
 
