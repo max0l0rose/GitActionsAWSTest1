@@ -11,7 +11,7 @@ on:
 #OKOKOKOK1111111
 
 env:
-  AWS_REGION: eu-west-3                   # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: eu-central-1 #eu-west-3                   # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: AWSRepo1           # set this to your Amazon ECR repository name
   ECS_SERVICE: MYECS_SERVICE                 # set this to your Amazon ECS service name
   ECS_CLUSTER: MYECS_CLUSTER                 # set this to your Amazon ECS cluster name
