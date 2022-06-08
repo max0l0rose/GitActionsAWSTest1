@@ -22,7 +22,7 @@ env:
 
   aws-secret-access-key: jQI5xTjS4zAvbAt4+aE6lsXRkT+ZfqIQF4gBWozn
   BUCKET_NAME: gitbac2 #gitactions2
-  EB_APPNAME: gitapp1
+  EB_APPNAME: ebapp1
 
 #permissions:
 #  contents: read
