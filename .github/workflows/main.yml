@@ -88,18 +88,26 @@ jobs:
 
 
 
-#  dep_loy:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: AKIA4KFLILHHA67QZDX5
-#          aws-secret-access-key: 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
-#          aws-region: ${{ env.AWS_REGION }}
-#
-#        - name: create new elastic_beanstalk application
-#          run : |
-#            aws elasticbeanstalk create-application-version \
-#            --application-name
+  dep_loy:
+    runs-on: ubuntu-latest
+    needs: [bu_ild]
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: AKIA4KFLILHHA67QZDX5
+          aws-secret-access-key: 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
+          aws-region: ${{ env.AWS_REGION }}
+
+        - name: create new elastic_beanstalk application
+          run : |
+            aws elasticbeanstalk create-application-version \
+            --application-name ${{ env.EB_APPNAME }} \
+            --source-bundle S3Bucket="${{ ent.BUCKET_NAME }}".S3Key="${{ env.BUCKET_NAME }}" \
+            --version-label "Ver-${{ github.sha }}" \
+            --description "Commit ${{ github.sha }}"
+
+        - name: deploy aws eb app to env
+          run: aws elasticbeanstalk update-environment -environment-name qqqq --version-label "Ver-${{ github.sha }}"
+
 
