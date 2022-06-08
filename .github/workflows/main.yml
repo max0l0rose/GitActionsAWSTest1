@@ -59,7 +59,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: AKIA4KFLILHHA67QZDX5
-          aws-secret-access-key: ${{ aws-secret-access-key }}
+          aws-secret-access-key: ${{ env.aws-secret-access-key }}
           aws-region: ${{ env.AWS_REGION }}
 
 #      - name: Login to Amazon ECR
@@ -105,7 +105,7 @@ jobs:
         run : |
             aws elasticbeanstalk create-application-version \
             --application-name ${{ env.EB_APPNAME }} \
-            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="${{ aws-secret-access-key }}" \
+            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="${{ env.aws-secret-access-key }}" \
             --version-label "Ver-${{ github.sha }}" \
             --description "Commit ${{ github.sha }}"
 
