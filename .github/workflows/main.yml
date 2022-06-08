@@ -1,0 +1,105 @@
+name: Deploy to Amazon ECS 1111
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab1
+  workflow_dispatch:
+
+#OKOKOKOK1111111
+
+env:
+  AWS_REGION: eu-west-3                   # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: AWSRepo1           # set this to your Amazon ECR repository name
+  ECS_SERVICE: MYECS_SERVICE                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: MYECS_CLUSTER                 # set this to your Amazon ECS cluster name
+#  ECS_TASK_DEFINITION: MYECSTASKDEFINITION # set this to the path to your Amazon ECS task definition
+                                          # file, e.g. .aws/task-definition.json
+  CONTAINER_NAME: MYCONTAINERNAME           # set this to the name of the container in the
+                                          # containerDefinitions section of your task definition
+  BUCKET_NAME: gitactions2
+  EB_APPNAME: gitapp1
+
+#permissions:
+#  contents: read
+
+jobs:
+  bu_ild:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it1
+      - uses: actions/checkout@v3
+
+#      # Runs a single command using the runners shell
+#      - name: === Run a one-line script
+#        run: echo Hello, world!
+
+#      # Runs a set of commands using the runners shell
+#      - name: === Run a multi-line script
+#        run: |
+#          echo Add other actions to build,
+#          echo test, and deploy your project.
+#          echo ----------------
+#          echo github.workspace = ${{ github.workspace }}
+#          echo github.run_number = ${{ github.run_number }}
+#          echo ----------------
+#          echo DOCKERHUB_USERNAME = ${{ secrets.DOCKERHUB_USERNAME }}
+#          echo DOCKERHUB_TOKEN = ${{ secrets.DOCKERHUB_TOKEN }}
+#          echo ----------------
+#          ls ${{ github.workspace }}
+#          echo ----------------
+
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: AKIA4KFLILHHA67QZDX5
+          aws-secret-access-key: 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
+          aws-region: ${{ env.AWS_REGION }}
+
+#      - name: Login to Amazon ECR
+#        id: login-ecr
+#        uses: aws-actions/amazon-ecr-login@v1
+
+
+
+      - name: === Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11 #1.8
+
+#      - name: === java version
+#        run: java -version
+
+      - name: === mvn
+        run: mvn package #-Dmaven.test.skip=true
+
+#      - name: === Login to DockerHub Registry
+#        run: echo 96c0ae44-9639-4728-8302-e1073a0fef12 | docker login -u softfavorite --password-stdin
+
+      - name: === aws s3
+        run: aws s3 cp target/GitActionsAWSTest1-0.0.1-SNAPSHOT.jar s3://${{ env.BUCKET_NAME }}
+
+      - name: === LS
+        run: ls
+
+
+
+#  dep_loy:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Configure AWS credentials
+#        uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          aws-access-key-id: AKIA4KFLILHHA67QZDX5
+#          aws-secret-access-key: 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
+#          aws-region: ${{ env.AWS_REGION }}
+#
+#        - name: create new elastic_beanstalk application
+#          run : |
+#            aws elasticbeanstalk create-application-version \
+#            --application-name
+
