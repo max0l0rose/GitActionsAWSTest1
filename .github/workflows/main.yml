@@ -21,7 +21,7 @@ env:
                                           # containerDefinitions section of your task definition
 
   aws-secret-access-key: jQI5xTjS4zAvbAt4+aE6lsXRkT+ZfqIQF4gBWozn
-  BUCKET_NAME: gitactions2
+  BUCKET_NAME: gitbac2 #gitactions2
   EB_APPNAME: gitapp1
 
 #permissions:
