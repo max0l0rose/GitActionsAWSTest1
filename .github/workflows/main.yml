@@ -98,7 +98,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: AKIA4KFLILHHA67QZDX5
-          aws-secret-access-key: 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
+          aws-secret-access-key: ${{ env.aws-secret-access-key }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: create new elastic_beanstalk application
