@@ -81,8 +81,13 @@ jobs:
 #      - name: === Login to DockerHub Registry
 #        run: echo 96c0ae44-9639-4728-8302-e1073a0fef12 | docker login -u softfavorite --password-stdin
 
+
+      - name: === aws s3 delete bucket
+        run: aws s3api delete-bucket --bucket ${{ env.BUCKET_NAME }} #–region ${{ env.AWS_REGION }}
+
       - name: === aws s3 create bucket
         run: aws s3 mb s3://${{ env.BUCKET_NAME }} #–region ${{ env.AWS_REGION }}
+
 
       - name: === aws s3
         run: aws s3 cp target/${{env.PACK_NAME}} s3://${{ env.BUCKET_NAME }}
