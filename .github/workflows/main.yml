@@ -81,6 +81,8 @@ jobs:
 #      - name: === Login to DockerHub Registry
 #        run: echo 96c0ae44-9639-4728-8302-e1073a0fef12 | docker login -u softfavorite --password-stdin
 
+      - name: === aws delete all files from s3 bucket
+        run: aws s3 rm s3://${{ env.BUCKET_NAME }}/ --recursive # --exclude "*.jpg" --exclude "another/*"
 
       - name: === aws s3 delete bucket
         run: aws s3api delete-bucket --bucket ${{ env.BUCKET_NAME }} #–region ${{ env.AWS_REGION }}
