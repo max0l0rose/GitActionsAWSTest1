@@ -85,7 +85,8 @@ jobs:
 #        run: aws s3 rm s3://${{ env.BUCKET_NAME }}/ --recursive # --exclude "*.jpg" --exclude "another/*"
 
       - name: === aws s3 delete bucket
-        run: aws s3api delete-bucket --bucket ${{ env.BUCKET_NAME }} --force #–region ${{ env.AWS_REGION }}
+        run: aws s3 rb s3://${{ env.BUCKET_NAME }} --force
+#        run: aws s3api delete-bucket --bucket ${{ env.BUCKET_NAME }} --force #–region ${{ env.AWS_REGION }}
 
       - name: === aws s3 create bucket
         run: aws s3 mb s3://${{ env.BUCKET_NAME }} #–region ${{ env.AWS_REGION }}
