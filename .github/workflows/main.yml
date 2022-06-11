@@ -95,7 +95,7 @@ jobs:
         run: aws s3 mb s3://${{ env.BUCKET_NAME }} #–region ${{ env.AWS_REGION }}
 
 
-      - name: === aws s3
+      - name: === aws s3 copy
         if: always()
         run: aws s3 cp target/${{env.PACK_NAME}} s3://${{ env.BUCKET_NAME }}
 
@@ -117,7 +117,10 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
 
-      - name: === create elastic_beanstalk application
+      - name: === delete elastic_beanstalk delete-application
+        run : aws elasticbeanstalk delete-application --application-name ${{ env.EB_APPNAME }}
+
+      - name: === create elastic_beanstalk create-application
         run : aws elasticbeanstalk create-application --application-name ${{ env.EB_APPNAME }} --description "my application1"
 
 
