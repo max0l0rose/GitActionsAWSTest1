@@ -22,8 +22,8 @@ env:
 
   aws-access-key-id: AKIA4KFLILHHA67QZDX5
   aws-secret-access-key: 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
-  BUCKET_NAME: gitbac3 #gitactions2
-  EB_APPNAME: ebgitapp3
+  BUCKET_NAME: gitactionsbacket1 #gitactions2
+  EB_APPNAME: gitactions-eb-app1
   PACK_NAME: GitActionsAWSTest1-0.0.1-SNAPSHOT.jar
 
 #permissions:
