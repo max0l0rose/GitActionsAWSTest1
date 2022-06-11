@@ -95,6 +95,7 @@ jobs:
 
 
       - name: === aws s3
+        if: always()
         run: aws s3 cp target/${{env.PACK_NAME}} s3://${{ env.BUCKET_NAME }}
 
       - name: === LS
