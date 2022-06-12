@@ -32,7 +32,7 @@ env:
 jobs:
   bu_ild:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    #continue-on-error: true
     steps:
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it1
@@ -71,9 +71,9 @@ jobs:
 #        id: login-ecr
 #        uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Check on login failure
-        if: steps.login1.outcome != 'success' #|| steps.world.outcome != 'success'
-        run: exit 1
+#      - name: Check on login failure
+#        if: steps.login1.outcome != 'success' #|| steps.world.outcome != 'success'
+#        run: exit 1
 
       - name: === Set up JDK
         uses: actions/setup-java@v1
@@ -123,15 +123,18 @@ jobs:
 
 
       - name: === delete elasticbeanstalk delete-application
+        continue-on-error: true
         run : aws elasticbeanstalk delete-application --application-name ${{ env.EB_APPNAME }}
 
       - name: === create elasticbeanstalk create-application
-        if: always()
+        continue-on-error: true
+        #if: always()
         run : aws elasticbeanstalk create-application --application-name ${{ env.EB_APPNAME }} --description "my application1"
 
 
       - name: === create new elastic_beanstalk application version
-        if: always()
+        continue-on-error: true
+        #if: always()
         run : |
             aws elasticbeanstalk create-application-version \
             --application-name ${{ env.EB_APPNAME }} \
