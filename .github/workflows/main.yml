@@ -117,14 +117,16 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
 
-      - name: === delete elastic_beanstalk delete-application
+      - name: === delete elasticbeanstalk delete-application
         run : aws elasticbeanstalk delete-application --application-name ${{ env.EB_APPNAME }}
 
-      - name: === create elastic_beanstalk create-application
+      - name: === create elasticbeanstalk create-application
+        if: always()
         run : aws elasticbeanstalk create-application --application-name ${{ env.EB_APPNAME }} --description "my application1"
 
 
       - name: === create new elastic_beanstalk application version
+        if: always()
         run : |
             aws elasticbeanstalk create-application-version \
             --application-name ${{ env.EB_APPNAME }} \
@@ -132,7 +134,7 @@ jobs:
             --version-label "Ver-${{ github.sha }}" \
             --description "Commit ${{ github.sha }}"
 
-      - name: === deploy aws eb app to env
+      - name: === deploy aws elasticbeanstalk update-environment
         run: aws elasticbeanstalk update-environment
           --environment-name ebapp1-env
           --version-label "Ver-${{ github.sha }}"
