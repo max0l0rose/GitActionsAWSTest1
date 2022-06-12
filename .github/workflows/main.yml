@@ -60,6 +60,7 @@ jobs:
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
+        continue-on-error: false
         with:
           aws-access-key-id: ${{ env.aws-access-key-id }}
           aws-secret-access-key: ${{ env.aws-secret-access-key }}
