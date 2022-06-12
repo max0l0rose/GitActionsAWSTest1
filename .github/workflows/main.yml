@@ -20,8 +20,8 @@ env:
   CONTAINER_NAME: MYCONTAINERNAME           # set this to the name of the container in the
                                           # containerDefinitions section of your task definition
 
-  aws-access-key-id: AKIA4KFLILHHA67QZDX5
-  aws-secret-access-key: jQI5xTjS4zAvbAt4+aE6lsXRkT+ZfqIQF4gBWozn
+  aws-access-key-id: AKIA4KFLILHHGLAMARHD
+  aws-secret-access-key: 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
   BUCKET_NAME: gitactionsbacket1 #gitactions2
   EB_APPNAME: gitactions-eb-app1
   PACK_NAME: GitActionsAWSTest1-0.0.1-SNAPSHOT.jar
