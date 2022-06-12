@@ -148,6 +148,6 @@ jobs:
         run: |
           aws elasticbeanstalk update-environment \
           --environment-name ebapp1-env \
-          --version-label "Ver-${{ github.sha }}"
+          --version-label Ver-${{ github.sha }}
 
 
