@@ -60,7 +60,8 @@ jobs:
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
-        continue-on-error: false
+        id: login1
+        #continue-on-error: false
         with:
           aws-access-key-id: ${{ env.aws-access-key-id }}
           aws-secret-access-key: ${{ env.aws-secret-access-key }}
@@ -70,6 +71,9 @@ jobs:
 #        id: login-ecr
 #        uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Check on login failure
+        if: steps.login1.outcome != 'success' #|| steps.world.outcome != 'success'
+        run: exit 1
 
       - name: === Set up JDK
         uses: actions/setup-java@v1
