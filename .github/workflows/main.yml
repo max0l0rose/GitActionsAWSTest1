@@ -145,8 +145,9 @@ jobs:
             --description "Commit ${{ github.sha }}"
 
       - name: === deploy aws elasticbeanstalk update-environment
-        run: aws elasticbeanstalk update-environment
-          --environment-name ebapp1-env
+        run: |
+          aws elasticbeanstalk update-environment \
+          --environment-name ebapp1-env \
           --version-label "Ver-${{ github.sha }}"
 
 
