@@ -58,24 +58,24 @@ jobs:
 #          echo ----------------
 
 
-#      - name: Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        id: login1
-#        #continue-on-error: false
-#        with:
-#          aws-access-key-id: ${{ env.aws-access-key-id }}
-#          aws-secret-access-key: ${{ env.aws-secret-access-key }}
-#          aws-region: ${{ env.AWS_REGION }}
-#
-##      - name: Login to Amazon ECR
-##        id: login-ecr
-##        uses: aws-actions/amazon-ecr-login@v1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        id: login1
+        #continue-on-error: false
+        with:
+          aws-access-key-id: ${{ env.aws-access-key-id }}
+          aws-secret-access-key: ${{ env.aws-secret-access-key }}
+          aws-region: ${{ env.AWS_REGION }}
 
-#      - name: Check on login failure
-#        if: steps.login1.outcome != 'success' #|| steps.world.outcome != 'success'
-#        run: |
-#          echo exiting... \
-#          exit 1
+#      - name: Login to Amazon ECR
+#        id: login-ecr
+#        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Check on login failure
+        if: steps.login1.outcome != 'success' #|| steps.world.outcome != 'success'
+        run: |
+          echo exiting... \
+          exit 1
 
       - name: === Set up JDK
         uses: actions/setup-java@v1
@@ -88,66 +88,66 @@ jobs:
 ##      - name: === Login to DockerHub Registry
 ##        run: echo 96c0ae44-9639-4728-8302-e1073a0fef12 | docker login -u softfavorite --password-stdin
 
-#      - name: === aws delete all files from s3 bucket 3
-#        continue-on-error: true
-#        run: aws s3 rm s3://${{ env.BUCKET_NAME }}/ --recursive # --exclude "*.jpg" --exclude "another/*"
-#
-#      - name: === aws s3 delete bucket
-#        continue-on-error: true
-#        run: aws s3 rb s3://${{ env.BUCKET_NAME }} --force
-##        run: aws s3api delete-bucket --bucket ${{ env.BUCKET_NAME }} --force #–region ${{ env.AWS_REGION }}
-#
-#      - name: === aws s3 create bucket
-#        #if: always()
-#        run: aws s3 mb s3://${{ env.BUCKET_NAME }} #–region ${{ env.AWS_REGION }}
-#
-#
-#      - name: === aws s3 copy
-#        #if: always()
-#        run: aws s3 cp target/${{env.PACK_NAME}} s3://${{ env.BUCKET_NAME }}
-#
-#      - name: === LS
-#        run: ls
+      - name: === aws delete all files from s3 bucket 3
+        continue-on-error: true
+        run: aws s3 rm s3://${{ env.BUCKET_NAME }}/ --recursive # --exclude "*.jpg" --exclude "another/*"
+
+      - name: === aws s3 delete bucket
+        continue-on-error: true
+        run: aws s3 rb s3://${{ env.BUCKET_NAME }} --force
+#        run: aws s3api delete-bucket --bucket ${{ env.BUCKET_NAME }} --force #–region ${{ env.AWS_REGION }}
+
+      - name: === aws s3 create bucket
+        #if: always()
+        run: aws s3 mb s3://${{ env.BUCKET_NAME }} #–region ${{ env.AWS_REGION }}
+
+
+      - name: === aws s3 copy
+        #if: always()
+        run: aws s3 cp target/${{env.PACK_NAME}} s3://${{ env.BUCKET_NAME }}
+
+      - name: === LS
+        run: ls
 
 
 
-#  dep_loy:
-#    runs-on: ubuntu-latest
-#    needs: [bu_ild]
-#    steps:
-#      - name: === Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#
-#        with:
-#          aws-access-key-id: ${{ env.aws-access-key-id }}
-#          aws-secret-access-key: ${{ env.aws-secret-access-key }}
-#          aws-region: ${{ env.AWS_REGION }}
-#
-#
-#      - name: === delete elasticbeanstalk delete-application
-#        continue-on-error: true
-#        run : aws elasticbeanstalk delete-application --application-name ${{ env.EB_APPNAME }}
-#
-#      - name: === create elasticbeanstalk create-application
-#        continue-on-error: true
-#        #if: always()
-#        run : aws elasticbeanstalk create-application --application-name ${{ env.EB_APPNAME }} --description "my application1"
-#
-#
-#      - name: === create new elastic_beanstalk application version
-#        continue-on-error: true
-#        #if: always()
-#        run : |
-#            aws elasticbeanstalk create-application-version \
-#            --application-name ${{ env.EB_APPNAME }} \
-#            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="${{env.PACK_NAME}}" \
-#            --version-label "Ver-${{ github.sha }}" \
-#            --description "Commit ${{ github.sha }}"
-#
-#      - name: === deploy aws elasticbeanstalk update-environment
-#        run: |
-#          aws elasticbeanstalk update-environment \
-#          --environment-name ebapp1-env \
-#          --version-label Ver-${{ github.sha }}
+  dep_loy:
+    runs-on: ubuntu-latest
+    needs: [bu_ild]
+    steps:
+      - name: === Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+
+        with:
+          aws-access-key-id: ${{ env.aws-access-key-id }}
+          aws-secret-access-key: ${{ env.aws-secret-access-key }}
+          aws-region: ${{ env.AWS_REGION }}
+
+
+      - name: === delete elasticbeanstalk delete-application
+        continue-on-error: true
+        run : aws elasticbeanstalk delete-application --application-name ${{ env.EB_APPNAME }}
+
+      - name: === create elasticbeanstalk create-application
+        continue-on-error: true
+        #if: always()
+        run : aws elasticbeanstalk create-application --application-name ${{ env.EB_APPNAME }} --description "my application1"
+
+
+      - name: === create new elastic_beanstalk application version
+        continue-on-error: true
+        #if: always()
+        run : |
+            aws elasticbeanstalk create-application-version \
+            --application-name ${{ env.EB_APPNAME }} \
+            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="${{env.PACK_NAME}}" \
+            --version-label "Ver-${{ github.sha }}" \
+            --description "Commit ${{ github.sha }}"
+
+      - name: === deploy aws elasticbeanstalk update-environment
+        run: |
+          aws elasticbeanstalk update-environment \
+          --environment-name ebapp1-env \
+          --version-label Ver-${{ github.sha }}
 
 
