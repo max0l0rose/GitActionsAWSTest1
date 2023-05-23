@@ -25,7 +25,7 @@ env:
 #  aws-secret-access-key: x89WCIKCpc/1p0g5y0WHCg0ZZYtQAT7Zyo8KOmW_h1
   aws-secret-access-key: VgNXdtMtOkkPlsINI9OyF9+1O2WWbD8iq/Us+H4D
 
-  BUCKET_NAME: gitactionsbacket1 #gitactions2
+  BUCKET_NAME: gitactionsbucket1
   EB_APPNAME: gitactions-eb-app1
   PACK_NAME: GitActionsAWSTest1-0.0.1-SNAPSHOT.jar
 
@@ -92,11 +92,11 @@ jobs:
 ##        run: echo 96c0ae44-9639-4728-8302-e1073a0fef12 | docker login -u softfavorite --password-stdin
 
       - name: === aws delete all files from s3 bucket 3
-        continue-on-error: true
+#        continue-on-error: true
         run: aws s3 rm s3://${{ env.BUCKET_NAME }}/ --recursive # --exclude "*.jpg" --exclude "another/*"
 
       - name: === aws s3 delete bucket
-        continue-on-error: true
+#        continue-on-error: true
         run: aws s3 rb s3://${{ env.BUCKET_NAME }} --force
 #        run: aws s3api delete-bucket --bucket ${{ env.BUCKET_NAME }} --force #–region ${{ env.AWS_REGION }}
 
@@ -120,7 +120,6 @@ jobs:
     steps:
       - name: === Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
-
         with:
           aws-access-key-id: ${{ env.aws-access-key-id }}
           aws-secret-access-key: ${{ env.aws-secret-access-key }}
@@ -128,17 +127,17 @@ jobs:
 
 
       - name: === delete elasticbeanstalk delete-application
-        continue-on-error: true
+#        continue-on-error: true
         run : aws elasticbeanstalk delete-application --application-name ${{ env.EB_APPNAME }}
 
       - name: === create elasticbeanstalk create-application
-        continue-on-error: true
+#        continue-on-error: true
         #if: always()
         run : aws elasticbeanstalk create-application --application-name ${{ env.EB_APPNAME }} --description "my application1"
 
 
       - name: === create new elastic_beanstalk application version
-        continue-on-error: true
+#        continue-on-error: true
         #if: always()
         run : |
             aws elasticbeanstalk create-application-version \
