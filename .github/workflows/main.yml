@@ -92,11 +92,11 @@ jobs:
 ##        run: echo 96c0ae44-9639-4728-8302-e1073a0fef12 | docker login -u softfavorite --password-stdin
 
       - name: === aws delete all files from s3 bucket 3
-#        continue-on-error: true
+        continue-on-error: true
         run: aws s3 rm s3://${{ env.BUCKET_NAME }}/ --recursive # --exclude "*.jpg" --exclude "another/*"
 
       - name: === aws s3 delete bucket
-#        continue-on-error: true
+        continue-on-error: true
         run: aws s3 rb s3://${{ env.BUCKET_NAME }} --force
 #        run: aws s3api delete-bucket --bucket ${{ env.BUCKET_NAME }} --force #–region ${{ env.AWS_REGION }}
 
