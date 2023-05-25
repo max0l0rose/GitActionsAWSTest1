@@ -78,7 +78,7 @@ jobs:
 
       - name: Echo steps.login1.outcome
         run: |
-          echo steps.login1.outcome = $(steps.login1.outcome)
+          echo steps.login1.outcome = ${{steps.login1.outcome}}
 
       - name: Check login status
         if: steps.login1.outcome != 'success' #|| steps.world.outcome != 'success'
