@@ -21,9 +21,11 @@ env:
                                           # containerDefinitions section of your task definition
 
 #  aws-access-key-id: AKIA4KFLILHHGLAMARH_D1
-  aws-access-key-id: AKIA53SLLDVAXZ7ZS3GG
+#  aws-access-key-id: AKIA53SLLDVAXZ7ZS3GG
+  aws-access-key-id: AKIA53SLLDVA3ZVLLH7M # user2
 #  aws-secret-access-key: x89WCIKCpc/1p0g5y0WHCg0ZZYtQAT7Zyo8KOmW_h1
-  aws-secret-access-key: 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
+#  aws-secret-access-key: VgNXdtMtOkkPlsINI9OyF9+1O2WWbD8iq/Us+H4D
+  aws-secret-access-key: ZCXH99BgTipANpEStXt0ccDuh8lXPEPPVSUkzWAt # user2
 
   BUCKET_NAME: gitactionsbucket1
   EB_APPNAME: gitactions-eb-app1
@@ -74,6 +76,10 @@ jobs:
 #        id: login-ecr
 #        uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Echo steps.login1.outcome
+        run: |
+          echo "steps.login1.outcome = steps.login1.outcome"
+
       - name: Check on login failure
         if: steps.login1.outcome != 'success' #|| steps.world.outcome != 'success'
         run: |
@@ -106,6 +112,7 @@ jobs:
 
 
       - name: === aws s3 copy
+#        continue-on-error: true
         #if: always()
         run: aws s3 cp target/${{env.PACK_NAME}} s3://${{ env.BUCKET_NAME }}
 
