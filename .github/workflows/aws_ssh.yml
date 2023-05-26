@@ -53,12 +53,12 @@ jobs:
     - name: === kuku1
 #      uses: actions/checkout@v3
       #        echo ${{secrets.SECRET1}} >> aws_user1_key.pem
+      #        cat aws_user1_key.pem | sed 's/./& /g'
       env:
         DEV_ENV_FILE: ${{secrets.SECRET1}}
       run: |
         echo $DEV_ENV_FILE >> aws_user1_key.pem
         ls
-#        cat aws_user1_key.pem | sed 's/./& /g'
         ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-185-31-235.eu-central-1.compute.amazonaws.com
         ls
         echo qqqqq
