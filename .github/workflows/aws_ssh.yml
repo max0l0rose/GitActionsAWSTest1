@@ -53,7 +53,7 @@ jobs:
     - name: === kuku1
 #      uses: actions/checkout@v3
       run: |
-        echo kuku key = ${{secret.SECRET1}}
+        echo kuku key = ${{secrets.SECRET1}}
 
 #    - name: === Checkout
 #      uses: actions/checkout@v3
