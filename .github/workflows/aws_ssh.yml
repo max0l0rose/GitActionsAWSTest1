@@ -52,8 +52,8 @@ jobs:
     steps:
     - name: === kuku1
 #      uses: actions/checkout@v3
-    run: |
-      echo kuku1
+      run: |
+        echo kuku1
 
 #    - name: === Checkout
 #      uses: actions/checkout@v3
