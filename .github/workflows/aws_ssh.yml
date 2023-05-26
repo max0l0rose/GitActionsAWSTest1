@@ -68,6 +68,7 @@ jobs:
         cd ..
         ls
         echo 333333333333
+        mkdir .ssh
         touch ~/.ssh/known_hosts
         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
         ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-185-31-235.eu-central-1.compute.amazonaws.com
