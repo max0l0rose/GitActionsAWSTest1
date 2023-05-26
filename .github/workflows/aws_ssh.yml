@@ -57,7 +57,7 @@ jobs:
       env:
         DEV_ENV_FILE: ${{secrets.SECRET1}}
       run: |
-      echo $DEV_ENV_FILE>>aws_user1_key.pem
+        echo $DEV_ENV_FILE>>aws_user1_key.pem
         ls
         ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-185-31-235.eu-central-1.compute.amazonaws.com
         ls
