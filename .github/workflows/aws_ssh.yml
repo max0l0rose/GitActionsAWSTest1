@@ -61,10 +61,17 @@ jobs:
         echo $DEV_ENV_FILE>>aws_user1_key.pem
         cd ..
         ls
+        echo 111111111
         cd ..
         ls
+        echo 22222222222
+        cd ..
+        ls
+        echo 333333333333
+        touch ~/.ssh/known_hosts
         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
         ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-185-31-235.eu-central-1.compute.amazonaws.com
+        echo 44444444444444
         ls
         echo qqqqq
 
