@@ -58,8 +58,12 @@ jobs:
         DEV_ENV_FILE: ${{secrets.SECRET1}}
       run: |
         echo $DEV_ENV_FILE>>aws_user1_key.pem
+        cd ..
         ls
-        ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+        cd ..
+        ls
+#        ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+        ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
         ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-185-31-235.eu-central-1.compute.amazonaws.com
         ls
         echo qqqqq
