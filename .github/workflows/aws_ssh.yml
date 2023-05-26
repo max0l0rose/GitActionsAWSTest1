@@ -53,7 +53,9 @@ jobs:
     - name: === kuku1
 #      uses: actions/checkout@v3
       run: |
-        echo ${{secrets.SECRET1}} >> aws_user1_key.pem
+#        echo ${{secrets.SECRET1}} >> aws_user1_key.pem
+        echo qqqqqqqqqqqqqqqqqqqqqqqqqq >> aws_user1_key.pem
+        ls
         cat aws_user1_key.pem
 
 #    - name: === Checkout
