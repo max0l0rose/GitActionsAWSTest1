@@ -53,8 +53,10 @@ jobs:
     - name: === kuku1
 #      uses: actions/checkout@v3
       #        echo ${{secrets.SECRET1}} >> aws_user1_key.pem
+      env:
+        DEV_ENV_FILE: ${{secrets.SECRET1}}
       run: |
-        echo qqqqqqqqqqqqqqqqqqqqqqqqqq >> aws_user1_key.pem
+        echo $DEV_ENV_FILE >> aws_user1_key.pem
         ls
         cat aws_user1_key.pem
 
