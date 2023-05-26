@@ -133,30 +133,33 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
 
-      - name: === delete elasticbeanstalk delete-application
-#        continue-on-error: true
-        run : aws elasticbeanstalk delete-application --application-name ${{ env.EB_APPNAME }}
+      - name: === aws s3 cp s3
+        aws s3 cp s3://${{ env.BUCKET_NAME }}/${{env.PACK_NAME}} ${{env.PACK_NAME}}
 
-      - name: === create elasticbeanstalk create-application
-#        continue-on-error: true
-        #if: always()
-        run : aws elasticbeanstalk create-application --application-name ${{ env.EB_APPNAME }} --description "my application1"
-
-
-      - name: === create new elastic_beanstalk application version
-#        continue-on-error: true
-        #if: always()
-        run : |
-            aws elasticbeanstalk create-application-version \
-            --application-name ${{ env.EB_APPNAME }} \
-            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="${{env.PACK_NAME}}" \
-            --version-label "Ver-${{ github.sha }}" \
-            --description "Commit ${{ github.sha }}"
-
-      - name: === deploy aws elasticbeanstalk update-environment
-        run: |
-          aws elasticbeanstalk update-environment \
-          --environment-name ebapp1-env \
-          --version-label Ver-${{ github.sha }}
+#      - name: === delete elasticbeanstalk delete-application
+##        continue-on-error: true
+#        run : aws elasticbeanstalk delete-application --application-name ${{ env.EB_APPNAME }}
+#
+#      - name: === create elasticbeanstalk create-application
+##        continue-on-error: true
+#        #if: always()
+#        run : aws elasticbeanstalk create-application --application-name ${{ env.EB_APPNAME }} --description "my application1"
+#
+#
+#      - name: === create new elastic_beanstalk application version
+##        continue-on-error: true
+#        #if: always()
+#        run : |
+#            aws elasticbeanstalk create-application-version \
+#            --application-name ${{ env.EB_APPNAME }} \
+#            --source-bundle S3Bucket="${{ env.BUCKET_NAME }}",S3Key="${{env.PACK_NAME}}" \
+#            --version-label "Ver-${{ github.sha }}" \
+#            --description "Commit ${{ github.sha }}"
+#
+#      - name: === deploy aws elasticbeanstalk update-environment
+#        run: |
+#          aws elasticbeanstalk update-environment \
+#          --environment-name ebapp1-env \
+#          --version-label Ver-${{ github.sha }}
 
 
