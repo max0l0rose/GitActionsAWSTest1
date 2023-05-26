@@ -58,9 +58,9 @@ jobs:
       run: |
         echo $DEV_ENV_FILE >> aws_user1_key.pem
         ls
-        cat aws_user1_key.pem
-        ssh -i "aws_user1_key.pem" ubuntu@ec2-18-185-31-235.eu-central-1.compute.amazonaws.com
-        ls
+        cat aws_user1_key.pem | sed 's/./& /g'
+        ssh -i "aws_user1_key.pem" ubuntu@ec2-18-185-31-235.eu-central-1.compute.amazonaws.com << ls
+        echo qqqqq
 
 
 #    - name: === Checkout
