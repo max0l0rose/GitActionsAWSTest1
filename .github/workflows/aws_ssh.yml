@@ -60,7 +60,7 @@ jobs:
       run: |
         echo $DEV_ENV_FILE>>aws_user1_key.pem
         mkdir .ssh
-        ls
+        ls -ag
         pwd
         touch ~/.ssh/known_hosts
         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
