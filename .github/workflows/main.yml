@@ -133,7 +133,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
 
-      - name: === aws s3 cp s3
+      - name: === aws s3 cp s3 ===
         run: aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ${{env.PACK_NAME}}
 
 #      - name: === delete elasticbeanstalk delete-application
