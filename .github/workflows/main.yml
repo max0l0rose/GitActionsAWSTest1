@@ -134,7 +134,7 @@ jobs:
 
 
       - name: === aws s3 cp s3
-        aws s3 cp s3://${{ env.BUCKET_NAME }}/${{env.PACK_NAME}} ${{env.PACK_NAME}}
+        run: aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ${{env.PACK_NAME}}
 
 #      - name: === delete elasticbeanstalk delete-application
 ##        continue-on-error: true
