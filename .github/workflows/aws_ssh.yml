@@ -50,7 +50,7 @@ jobs:
     environment: production
 
     steps:
-    - name: === kuku1
+    - name: === kuku1 ===
 #      uses: actions/checkout@v3
       #        echo ${{secrets.SECRET1}} >> aws_user1_key.pem
       #        cat aws_user1_key.pem | sed 's/./& /g'
