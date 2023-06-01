@@ -85,7 +85,6 @@ jobs:
         echo "pwd = $(pwd)"
         echo $DEV_ENV_FILE > aws_user1_key.pem
         mkdir -p ~/.ssh/
-        cat ~/.ssh/known_hosts
         ssh-keyscan -H github.com >> ~/.ssh/known_hosts
         cat ~/.ssh/known_hosts
         sudo chmod 600 aws_user1_key.pem
