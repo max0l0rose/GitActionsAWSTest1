@@ -97,7 +97,7 @@ jobs:
         echo "cat known_hosts ---"
         cat ~/.ssh/known_hosts
         echo =====================
-        ssh -i "aws_user1_key.pem" -tt -T git@github.com ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
+        ssh -i aws_user1_key.pem -tt -T git@github.com ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
 
 
 
