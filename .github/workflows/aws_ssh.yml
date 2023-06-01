@@ -56,6 +56,7 @@ jobs:
       #        cat aws_user1_key.pem | sed 's/./& /g'
 #        touch ~/.ssh/known_hosts
 #        ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+#        ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
       env:
         DEV_ENV_FILE: ${{secrets.SECRET1}}
       run: |
@@ -63,7 +64,8 @@ jobs:
         mkdir ~/.ssh
         ls -ag
         pwd
-        ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
+        ssh-add - <<< "$DEV_ENV_FILE"
+        ssh -tt ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
         echo =====================
         ls
 
