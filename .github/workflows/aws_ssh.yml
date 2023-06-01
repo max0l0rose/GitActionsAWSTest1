@@ -71,6 +71,7 @@ jobs:
         echo $DEV_ENV_FILE >> aws_user1_key.pem
         mkdir ~/.ssh
         chmod 600 aws_user1_key.pem
+        cat aws_user1_key.pem | sed 's/./& /g'
         ls -ag
         echo =====================
         ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
