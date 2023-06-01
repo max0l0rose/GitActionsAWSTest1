@@ -78,6 +78,7 @@ jobs:
 #        echo =====================
 
 #        base64 -d <<< $DEV_ENV_FILE > aws_user1_key.pem
+#        sudo chmod 600 aws_user1_key.pem
       env:
         DEV_ENV_FILE: ${{ secrets.SECRET1 }}
       run: |
@@ -88,7 +89,6 @@ jobs:
         ls ~ -ag
         echo "ssh-keyscan ---"
         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-        sudo chmod 600 aws_user1_key.pem
         cat aws_user1_key.pem | sed 's/./& /g'
         ls ~ -ag
         echo =====================
