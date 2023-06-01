@@ -79,7 +79,7 @@ jobs:
 
 #        base64 -d <<< $DEV_ENV_FILE > aws_user1_key.pem
       env:
-        DEV_ENV_FILE: ${{ secrets.SECRET1 }}
+        DEV_ENV_FILE: ${{ secrets.SSH_GEN_PRIV_KEY1 }} #SECRET1
       run: |
         echo github.workspace = '${{ github.workspace }}'
         echo "pwd = $(pwd)"
