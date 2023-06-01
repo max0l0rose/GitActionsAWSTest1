@@ -78,14 +78,14 @@ jobs:
 #        echo =====================
 
 #        base64 -d <<< $DEV_ENV_FILE > aws_user1_key.pem
-#        mkdir -p ~/.ssh/
       env:
         DEV_ENV_FILE: ${{ secrets.SECRET1 }}
       run: |
         echo github.workspace = '${{ github.workspace }}'
         echo "pwd = $(pwd)"
-        ls ~ -ag
         echo $DEV_ENV_FILE > aws_user1_key.pem
+        mkdir -p ~/.ssh/
+        ls ~ -ag
         echo "ssh-keyscan"
         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
         cat ~/.ssh/known_hosts
@@ -94,6 +94,8 @@ jobs:
         ls ~ -ag
         echo =====================
         ls ~/.ssh -ag
+        echo "cat"
+        cat ~/.ssh/known_hosts
         echo =====================
         ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
 
