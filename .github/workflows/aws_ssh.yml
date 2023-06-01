@@ -61,14 +61,18 @@ jobs:
 #        ssh-add - <<< "$DEV_ENV_FILE"
 #        ssh -tt ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
 #        echo =====================
+
+#        base64 -d <<< $DEV_ENV_FILE > aws_user1_key.pem
       env:
         DEV_ENV_FILE: ${{ secrets.SECRET1 }}
       run: |
         set -x
         pwd
-        base64 -d <<< $DEV_ENV_FILE > aws_user1_key.pem
+        echo $DEV_ENV_FILE >> aws_user1_key.pem
         mkdir ~/.ssh
+        chmod 600 aws_user1_key.pem
         ls -ag
+        echo =====================
         ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
         echo =====================
         ls
