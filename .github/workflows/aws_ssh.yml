@@ -84,7 +84,9 @@ jobs:
       run: |
         echo github.workspace = '${{ github.workspace }}'
         echo "pwd = $(pwd)"
+        ls ~ -ag
         echo $DEV_ENV_FILE > aws_user1_key.pem
+        echo "ssh-keyscan"
         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
         cat ~/.ssh/known_hosts
         sudo chmod 600 aws_user1_key.pem
