@@ -65,11 +65,10 @@ jobs:
         DEV_ENV_FILE: ${{ secrets.SECRET1 }}
       run: |
         set -x
-        echo $DEV_ENV_FILE>>aws_user1_key.pem
+        pwd
+        base64 -d <<< $DEV_ENV_FILE > aws_user1_key.pem
         mkdir ~/.ssh
         ls -ag
-        pwd
-
         ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
         echo =====================
         ls
