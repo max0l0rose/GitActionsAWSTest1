@@ -50,33 +50,47 @@ jobs:
     environment: production
 
     steps:
-    - name: === kuku1 ===
-#      uses: actions/checkout@v3
-      #        echo ${{secrets.SECRET1}} >> aws_user1_key.pem
-      #        cat aws_user1_key.pem | sed 's/./& /g'
-#        touch ~/.ssh/known_hosts
-#        ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-#        ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
+#      port: ${{ secrets.PORT }}
+#      passphrase: ${{ secrets.PASSPHRASE }}
+      - name: ssh key passphrase ------------
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
+          username: ubuntu
+          key: ${{ secrets.SECRET1 }}
+          script: |
+            whoami
+            ls -al
 
-#        ssh-add - <<< "$DEV_ENV_FILE"
-#        ssh -tt ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
+#    - name: === kuku1 ===
+##      uses: actions/checkout@v3
+#      #        echo ${{secrets.SECRET1}} >> aws_user1_key.pem
+#      #        cat aws_user1_key.pem | sed 's/./& /g'
+##        touch ~/.ssh/known_hosts
+##        ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+##        ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
+#
+##        ssh-add - <<< "$DEV_ENV_FILE"
+##        ssh -tt ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
+##        echo =====================
+#
+##        base64 -d <<< $DEV_ENV_FILE > aws_user1_key.pem
+#      env:
+#        DEV_ENV_FILE: ${{ secrets.SECRET1 }}
+#      run: |
+#        set -x
+#        pwd
+#        echo $DEV_ENV_FILE > aws_user1_key.pem
+#        mkdir -p ~/.ssh/
+#        sudo chmod 600 aws_user1_key.pem
+#        cat aws_user1_key.pem | sed 's/./& /g'
+#        ls -ag
 #        echo =====================
+#        ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
+#        echo =====================
+#        ls
 
-#        base64 -d <<< $DEV_ENV_FILE > aws_user1_key.pem
-      env:
-        DEV_ENV_FILE: ${{ secrets.SECRET1 }}
-      run: |
-        set -x
-        pwd
-        echo $DEV_ENV_FILE >> aws_user1_key.pem
-        mkdir ~/.ssh
-        chmod 600 aws_user1_key.pem
-        cat aws_user1_key.pem | sed 's/./& /g'
-        ls -ag
-        echo =====================
-        ssh -tt -i "aws_user1_key.pem" ubuntu@ec2-18-194-28-107.eu-central-1.compute.amazonaws.com
-        echo =====================
-        ls
+
 
 
 #    - name: === Checkout
