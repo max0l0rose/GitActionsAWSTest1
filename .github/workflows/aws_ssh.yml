@@ -89,7 +89,7 @@ jobs:
 #        echo =====================
 #        ls ~/.ssh -ag
       env:
-        DEV_ENV_FILE: ${{ secrets.SSH_GEN_PRIV_KEY1 }} #SECRET1
+        DEV_ENV_FILE: ${{ secrets.BIGHALL }} #SSH_GEN_PRIV_KEY1 SECRET1
       run: |
         echo github.workspace = '${{ github.workspace }}'
         echo "pwd = $(pwd)"
@@ -99,7 +99,7 @@ jobs:
         cat aws_user1_key.pem | sed 's/./& /g'
         echo =====================
         echo "ssh ---"
-        ssh -i "aws_user1_key.pem" -tt -o StrictHostKeyChecking=no ubuntu@ec2-3-70-221-213.eu-central-1.compute.amazonaws.com
+        ssh -vi "aws_user1_key.pem" -tt -o StrictHostKeyChecking=no ubuntu@ec2-3-70-221-213.eu-central-1.compute.amazonaws.com
 
 
 
