@@ -99,7 +99,7 @@ jobs:
         cat aws_user1_key.pem | sed 's/./& /g'
         echo =====================
         echo "ssh ---"
-        ssh -vi "aws_user1_key.pem" -tt -o StrictHostKeyChecking=no ubuntu@ec2-3-70-221-213.eu-central-1.compute.amazonaws.com
+        sudo ssh -vi "aws_user1_key.pem" -tt -o StrictHostKeyChecking=no ubuntu@ec2-3-70-221-213.eu-central-1.compute.amazonaws.com
 
 
 
