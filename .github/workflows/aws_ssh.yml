@@ -130,19 +130,19 @@ c5beJ9tlmpH2lLTkcS+7iX71IuhZfHowzNtJl/fcGq6hInrB4Vz4LEFUhHIiOJCBsOPK7q
         #${{ secrets.BIGHALL }} #BIGHALL SSH_GEN_PRIV_KEY1 SECRET1
 
 #| tr -d '\r'
+#        echo "" >> aws_user1_key.pem
       run: |
         echo github.workspace = '${{ github.workspace }}'
         echo "pwd = $(pwd)"
         echo "-----BEGIN OPENSSH PRIVATE_KEY-----" > aws_user1_key.pem
         echo $DEV_ENV_FILE | tr " " "\n" >> aws_user1_key.pem
         echo "-----END OPENSSH PRIVATE KEY-----" >> aws_user1_key.pem
-        echo "" >> aws_user1_key.pem
         sudo chmod 600 aws_user1_key.pem
         ls ~ -ag
         hexdump -C aws_user1_key.pem
         echo =====================
         echo "ssh ---"
-        sudo ssh -i "aws_user1_key.pem" -v -o StrictHostKeyChecking=no ubuntu@35.158.210.22
+        sudo ssh -i aws_user1_key.pem -v -o StrictHostKeyChecking=no ubuntu@35.158.210.22
 
 
 
