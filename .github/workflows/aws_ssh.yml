@@ -91,7 +91,10 @@ jobs:
 
 #        sed -i -e '$a\' aws_user1_key.pem
       env:
-        DEV_ENV_FILE: '-----BEGIN OPENSSH PRIVATE KEY-----
+        DEV_ENV_FILE: 'q
+        w
+e
+-----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAYEAtLgTFhZ1uKLNfgh8H/I3HL5TfVynn3zZLGkuEbcHCjAy1Uq/kV68
 9jPYHyIsUEYsoYNdRqPfzutFn8OhH4lf+BREXDWpPmE0kxQ0Gl7wJYwzTgAYonylO/9G3G
@@ -129,8 +132,8 @@ Tgh/UiHRFRByU49DHNeB3hgC5jJWuNX9rRPdIcrcWDvCfbEn5OMKkoFTKFi2avu2Y4NbEI
 c5beJ9tlmpH2lLTkcS+7iX71IuhZfHowzNtJl/fcGq6hInrB4Vz4LEFUhHIiOJCBsOPK7q
 1dfY8C0y7dTNT5AAAAF3VidW50dUBpcC0xNzItMzEtMTYtMjEzAQID
 -----END OPENSSH PRIVATE KEY-----
-
-
+q
+q
 ' #BIGHALL SSH_GEN_PRIV_KEY1 SECRET1
       run: |
         echo github.workspace = '${{ github.workspace }}'
