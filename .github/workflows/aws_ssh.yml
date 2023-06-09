@@ -138,7 +138,7 @@ q
       run: |
         echo github.workspace = '${{ github.workspace }}'
         echo "pwd = $(pwd)"
-        echo $DEV_ENV_FILE > aws_user1_key.pem
+        echo $DEV_ENV_FILE | tr -d '\r' > aws_user1_key.pem
         sed -i -e '$a\' aws_user1_key.pem
         sudo chmod 600 aws_user1_key.pem
         ls ~ -ag
