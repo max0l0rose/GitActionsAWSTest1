@@ -134,7 +134,7 @@ c5beJ9tlmpH2lLTkcS+7iX71IuhZfHowzNtJl/fcGq6hInrB4Vz4LEFUhHIiOJCBsOPK7q
       run: |
         echo github.workspace = '${{ github.workspace }}'
         echo "pwd = $(pwd)"
-        echo "-----BEGIN OPENSSH PRIVATE_KEY-----" > aws_user1_key.pem
+        echo "-----BEGIN OPENSSH PRIVATE KEY-----" > aws_user1_key.pem
         echo $DEV_ENV_FILE | tr " " "\n" >> aws_user1_key.pem
         echo "-----END OPENSSH PRIVATE KEY-----" >> aws_user1_key.pem
         sudo chmod 600 aws_user1_key.pem
