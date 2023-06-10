@@ -39,6 +39,7 @@ jobs:
   bu_ild:
     runs-on: ubuntu-latest
     #continue-on-error: true
+    condition: false
     steps:
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it1
@@ -153,6 +154,12 @@ jobs:
           echo "ssh ---"
           sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@35.158.210.22 -- "
             export;
+            echo ---- ~/.aws/credentials -------
+            echo '
+              [default]
+              aws_access_key_id = AKIA53SLLDVAXZ7ZS3GG
+              aws_secret_access_key = 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
+            ' > ~/.aws/credentials
             echo -----------
             aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/
           "
