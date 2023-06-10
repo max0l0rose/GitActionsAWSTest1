@@ -158,9 +158,9 @@ jobs:
             export;
             echo ---- ~/.aws/credentials -------
             echo '[default]
-aws_access_key_id = AKIA53SLLDVAXZ7ZS3GG
-aws_secret_access_key = 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
-' > ~/.aws/credentials
+            aws_access_key_id = AKIA53SLLDVAXZ7ZS3GG
+            aws_secret_access_key = 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
+            ' > ~/.aws/credentials
             echo -----------
             aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/
           "
