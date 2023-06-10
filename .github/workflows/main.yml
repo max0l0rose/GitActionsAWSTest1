@@ -36,10 +36,11 @@ env:
 #  contents: read
 
 jobs:
+#-------------------------------------------------------------------------------------
   bu_ild:
     runs-on: ubuntu-latest
     #continue-on-error: true
-    condition: false
+    if: false
     steps:
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it1
