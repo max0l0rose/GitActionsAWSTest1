@@ -150,7 +150,10 @@ jobs:
         echo =====================
         echo "ssh ---"
         sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@35.158.210.22 -- "
-          ls -ag; echo 111; export GIT"
+          ls -ag;
+          echo 1+2;
+          export | grep GIT
+        "
 
 
 
