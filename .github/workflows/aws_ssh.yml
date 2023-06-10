@@ -138,6 +138,7 @@ jobs:
 #   head -n -1 test (from first to penultimate)
 #   tail +2 (from second to last)
 
+#        hexdump -C aws_user1_key.pem
       run: |
         echo github.workspace = '${{ github.workspace }}'
         echo "pwd = $(pwd)"
@@ -146,10 +147,9 @@ jobs:
         echo "-----END OPENSSH PRIVATE KEY-----" >> aws_user1_key.pem
         sudo chmod 600 aws_user1_key.pem
         ls ~ -ag
-        hexdump -C aws_user1_key.pem
         echo =====================
         echo "ssh ---"
-        sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@35.158.210.22 << "ls -ag; echo 111; export"
+        sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@35.158.210.22 -- ls -ag; echo 111; export
 
 
 
