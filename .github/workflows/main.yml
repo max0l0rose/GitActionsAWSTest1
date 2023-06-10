@@ -136,6 +136,26 @@ jobs:
       - name: === aws s3 cp s3 ===
         run: aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ${{env.PACK_NAME}}
 
+      - name: === SSH ===
+        env:
+          DEV_ENV_FILE: ${{ secrets.BIGHALL }} #BIGHALL SSH_GEN_PRIV_KEY1 SECRET1
+        run: |
+          echo github.workspace = '${{ github.workspace }}'
+          echo "pwd = $(pwd)"
+          echo "-----BEGIN OPENSSH PRIVATE KEY-----" > aws_user1_key.pem
+          echo $DEV_ENV_FILE | tr " " "\n" >> aws_user1_key.pem
+          echo "-----END OPENSSH PRIVATE KEY-----" >> aws_user1_key.pem
+          sudo chmod 600 aws_user1_key.pem
+          ls ~ -ag
+          echo =====================
+          echo "ssh ---"
+          sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@35.158.210.22 -- "
+            ls -ag;
+            echo $[1+2];
+            export | grep GIT;
+            exit 0;
+          "
+
 #      - name: === delete elasticbeanstalk delete-application
 ##        continue-on-error: true
 #        run : aws elasticbeanstalk delete-application --application-name ${{ env.EB_APPNAME }}
