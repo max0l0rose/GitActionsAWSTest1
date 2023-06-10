@@ -153,6 +153,7 @@ jobs:
           ls -ag;
           echo $[1+2];
           export | grep GIT;
+          echo 999999
         "
 
 
