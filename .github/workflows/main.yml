@@ -157,8 +157,7 @@ jobs:
           sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@35.158.210.22 -- "
             export;
             echo ---- ~/.aws/credentials -------
-            echo
-'[default]
+            echo '[default]
 aws_access_key_id = AKIA53SLLDVAXZ7ZS3GG
 aws_secret_access_key = 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
 ' > ~/.aws/credentials
