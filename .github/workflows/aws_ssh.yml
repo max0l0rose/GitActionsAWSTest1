@@ -149,7 +149,7 @@ jobs:
         hexdump -C aws_user1_key.pem
         echo =====================
         echo "ssh ---"
-        sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no "ls -ag" ubuntu@35.158.210.22
+        sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@35.158.210.22 << "ls -ag; echo 111; export"
 
 
 
