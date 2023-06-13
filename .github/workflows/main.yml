@@ -138,7 +138,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
 
-      - name: === aws s3 cp s3 ===
+      - name: === AWS s3 cp s3 ===
         run: aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ${{env.PACK_NAME}}
 
 #  aws s3 cp s3://my/s3/path/ //my/ec2/path/ --exclude '*' --include '2014-01*' --recursive
@@ -153,7 +153,7 @@ jobs:
           echo "-----END OPENSSH PRIVATE KEY-----" >> aws_user1_key.pem
           sudo chmod 600 aws_user1_key.pem
           ls ~ -ag
-          echo ========== SSH ==============
+          echo ----------- SSH --------------
           sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@35.158.210.22 -- "
             export;
             echo ------------ ~/.aws/credentials -------------
