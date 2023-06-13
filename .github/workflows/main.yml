@@ -22,10 +22,10 @@ env:
                                           # containerDefinitions section of your task definition
 
 #  aws-access-key-id: AKIA4KFLILHHGLAMARH_D1
-  aws-access-key-id: AKIA53SLLDVAXZ7ZS3GG # user1
+  AWS_ACCESS_KEY_ID: AKIA53SLLDVAXZ7ZS3GG # user1
 #  aws-access-key-id: AKIA53SLLDVA3ZVLLH7M # user2
 #  aws-secret-access-key: x89WCIKCpc/1p0g5y0WHCg0ZZYtQAT7Zyo8KOmW_h1
-  aws-secret-access-key: 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 # user1
+  AWS_SECRET_ACCESS_KEY: VgNXdtMtOkkPlsINI9OyF9+1O2WWbD8iq/Us+H4D # user1
 #  aws-secret-access-key: ZCXH99BgTipANpEStXt0ccDuh8lXPEPPVSUkzWAt # user2
 
   BUCKET_NAME: gitactionsbucket1
@@ -71,8 +71,8 @@ jobs:
         id: login1
         #continue-on-error: false
         with:
-          aws-access-key-id: ${{ env.aws-access-key-id }}
-          aws-secret-access-key: ${{ env.aws-secret-access-key }}
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
 #      - name: Login to Amazon ECR
@@ -132,8 +132,8 @@ jobs:
       - name: === Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ env.aws-access-key-id }}
-          aws-secret-access-key: ${{ env.aws-secret-access-key }}
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
 
@@ -158,11 +158,11 @@ jobs:
             export;
             echo ---- ~/.aws/credentials -------
             echo '[default]
-          aws_access_key_id = ${{ env.aws-access-key-id }}
-          aws_secret_access_key = ${{ env.aws-secret-access-key }}
+          AWS_ACCESS_KEY_ID = ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY = ${{ env.AWS_SECRET_ACCESS_KEY }}
           ' > ~/.aws/credentials
             echo -----------
-            aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/
+            aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/Prjs
           "
 
 #      - name: === delete elasticbeanstalk delete-application
