@@ -17,7 +17,7 @@ on:
 #  jps | grep GitActionsAWSTest1
 
 # kill spec process
-# kill -9 $(ps u | grep java | grep Git | awk '{print $2}')
+# kill -9 $(ps aux | grep java | grep Git | awk '{print $2}')
 
 
 env:
@@ -176,9 +176,9 @@ jobs:
             echo ----------- Run ${{env.PACK_NAME}} -------------
             cd ~/Prjs
             echo ----------- Kill -------------
-            kill -9 $(ps u | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')
+            kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')
             echo ----------- Start -------------
-            java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> derr${{env.PACK_NAME}} &
+            java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &
           "
 
 #      - name: === delete elasticbeanstalk delete-application
