@@ -10,6 +10,16 @@ on:
 
 #OKOKOKOK1111111
 
+#  ls -alt --time=ctime
+
+#  list java processes:
+#  ps -fC java
+#  jps | grep GitActionsAWSTest1
+
+# kill spec process
+# kill -9 $(ps u | grep java | grep Git | awk '{print $2}')
+
+
 env:
   QQQ: WWW
   AWS_REGION: eu-central-1 #eu-west-3                   # set this to your preferred AWS region, e.g. us-west-1
@@ -165,7 +175,10 @@ jobs:
             aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/Prjs
             echo ----------- Run ${{env.PACK_NAME}} -------------
             cd ~/Prjs
-            java -jar ${{env.PACK_NAME}}
+            echo ----------- Kill -------------
+            kill -9 $(ps u | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')
+            echo ----------- Start -------------
+            java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> derr${{env.PACK_NAME}} &
           "
 
 #      - name: === delete elasticbeanstalk delete-application
