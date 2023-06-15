@@ -10,6 +10,8 @@ on:
 
 #OKOKOKOK1111111
 
+#  stty -ixon
+
 #  ls -alt --time=ctime
 
 #  list java processes:
@@ -175,9 +177,9 @@ jobs:
             aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/Prjs
             echo ----------- Run ${{env.PACK_NAME}} -------------
             cd ~/Prjs
-            echo ----------- "kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')" -------------
+            echo ----------- 'kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')' -------------
             kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')
-            echo ----------- "java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &" -------------
+            echo ----------- 'java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &' -------------
             java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &
           "
 
