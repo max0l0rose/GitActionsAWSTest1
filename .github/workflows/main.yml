@@ -168,14 +168,13 @@ jobs:
           echo ----------- SSH --------------
           sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@35.158.210.22 -- "
             export;
-            echo ------------ ~/.aws/credentials -------------
+            echo ------------ echo ~/.aws/credentials -------------
             echo '[default]
           AWS_ACCESS_KEY_ID = ${{ env.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY = ${{ env.AWS_SECRET_ACCESS_KEY }}
           ' > ~/.aws/credentials
-            echo ----------- aws s3 cp -------------
+            echo ----------- aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/Prjs -------------
             aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/Prjs
-            echo ----------- Run ${{env.PACK_NAME}} -------------
             cd ~/Prjs
             echo ----------- 'kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')' -------------
             kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')
