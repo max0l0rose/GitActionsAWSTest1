@@ -176,6 +176,8 @@ jobs:
             echo ----------- aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/Prjs -------------
             aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/Prjs
             cd ~/Prjs
+            echo ----------- ps aux | grep java -------------
+            ps aux | grep java 
             echo ----------- ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}' -------------
             ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}'
             echo ----------- kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}') -------------
