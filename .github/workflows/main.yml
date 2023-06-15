@@ -178,13 +178,14 @@ jobs:
             cd ~/Prjs
             echo '----------- ps aux | grep java -------------'
             ps aux | grep java 
-            echo '----------- ps aux | grep java | grep ${{env.PACK_NAME}} | awk {print $2} -------------'
-            ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}'
-            echo '----------- kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk {print $2}) -------------'
-            kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')
             echo ----------- 'java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &' -------------
             java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &
           "
+
+#            echo '----------- ps aux | grep java | grep ${{env.PACK_NAME}} | awk {print $2} -------------'
+#            ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}'
+#            echo '----------- kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk {print $2}) -------------'
+#            kill -9 $(ps aux | grep java | grep ${{env.PACK_NAME}} | awk '{print $2}')
 
 #      - name: === delete elasticbeanstalk delete-application
 ##        continue-on-error: true
