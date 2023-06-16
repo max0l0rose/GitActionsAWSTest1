@@ -181,7 +181,7 @@ jobs:
             set -x
             echo \"----------- ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}' -------------\"
             ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \$2}'
-            echo '----------- kill -9 \"'\$'\"(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}') -------------'
+            echo \"----------- kill -9 \"'\$'\"(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}') -------------\"
             kill -9 \$(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \$2}')
             set +x
             echo ----------- 'java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &' -------------
