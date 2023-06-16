@@ -178,7 +178,6 @@ jobs:
             cd ~/Prjs
             echo --------- jps ----------
             jps
-#            set -x
             echo \"----------- ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}' -------------\"
             ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \$2}'
             echo \"----------- kill -9 \"'\$'\"(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}') -------------\"
@@ -188,6 +187,7 @@ jobs:
             java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &
           "
 
+#            set -x
 
 #      - name: === delete elasticbeanstalk delete-application
 ##        continue-on-error: true
