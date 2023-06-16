@@ -179,7 +179,7 @@ jobs:
             echo --------- jps ----------
             jps
             set -x
-            echo \"----------- ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ '{print \"'\$2'\"}' -------------\"
+            echo \"----------- ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}' -------------\"
             ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \$2}'
             echo '----------- kill -9 \"'\$'\"(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}') -------------'
             kill -9 \$(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \$2}')
