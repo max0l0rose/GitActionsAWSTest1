@@ -165,10 +165,10 @@ jobs:
           echo "-----END OPENSSH PRIVATE KEY-----" >> aws_user1_key.pem
           sudo chmod 600 aws_user1_key.pem
           ls ~ -ag
-          echo ----------- SSH --------------
+          echo ----- SSH -----
           sudo ssh -i aws_user1_key.pem -o StrictHostKeyChecking=no ubuntu@3.70.241.131 -- "
             export;
-            echo ------------ echo ~/.aws/credentials -------------
+            echo ---- echo ~/.aws/credentials ----
             echo '[default]
           AWS_ACCESS_KEY_ID = ${{ env.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY = ${{ env.AWS_SECRET_ACCESS_KEY }}
@@ -176,14 +176,14 @@ jobs:
             echo ----------- aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/Prjs -------------
             aws s3 cp s3://${{env.BUCKET_NAME}}/${{env.PACK_NAME}} ~/Prjs
             cd ~/Prjs
-            echo --------- jps ----------
+            echo --- jps ----
             jps
-            echo \"----------- ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}' -------------\"
+            echo \"--- ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}' ---\"
             ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \$2}'
-            echo \"----------- kill -9 \"'\$'\"(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}') -------------\"
+            echo \"---- kill -9 \"'\$'\"(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}') ---\"
             kill -9 \$(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \$2}')
             set +x
-            echo ----------- 'java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &' -------------
+            echo --- 'java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &' ---
             java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &
           "
 
