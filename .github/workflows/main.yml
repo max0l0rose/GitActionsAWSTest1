@@ -165,6 +165,7 @@ jobs:
           echo "-----END OPENSSH PRIVATE KEY-----" >> aws_user1_key.pem
           sudo chmod 600 aws_user1_key.pem
           ls ~ -ag
+
           echo ----- SSH -----
           sudo ssh -i aws_user1_key.pem -o ConnectTimeout=10 -o StrictHostKeyChecking=no ubuntu@3.71.112.247 -- "
             export;
@@ -182,11 +183,11 @@ jobs:
             ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \$2}'
             echo \"---- kill -9 \"'\$'\"(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \"'\$2'\"}') ---\"
             kill -9 \$(ps aux | awk '!/bash/ && /${{env.PACK_NAME}}/ {print \$2}')
-            set +x
             echo --- 'java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &' ---
             java -jar ${{env.PACK_NAME}} > out${{env.PACK_NAME}} 2> err${{env.PACK_NAME}} &
           "
 
+#            set +x
 #            set -x
 
 #      - name: === delete elasticbeanstalk delete-application
