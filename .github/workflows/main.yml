@@ -141,6 +141,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [bu_ild]
     if: always()
+    env:
+      QQQ2: Www2
+      INSTANCE: 3.71.112.247
     steps:
       - name: === Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -169,7 +172,7 @@ jobs:
           export;
 
           echo ----- SSH -----
-          sudo ssh -i aws_user1_key.pem -o ConnectTimeout=10 -o StrictHostKeyChecking=no ubuntu@3.71.112.247 -- "
+          sudo ssh -i aws_user1_key.pem -o ConnectTimeout=10 -o StrictHostKeyChecking=no ubuntu@${{env.INSTANCE}} -- "
             export;
             echo ---- echo ~/.aws/credentials ----
             echo '[default]
