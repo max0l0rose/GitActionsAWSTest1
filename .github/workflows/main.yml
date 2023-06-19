@@ -164,7 +164,9 @@ jobs:
           echo $DEV_ENV_FILE | tr " " "\n" >> aws_user1_key.pem
           echo "-----END OPENSSH PRIVATE KEY-----" >> aws_user1_key.pem
           sudo chmod 600 aws_user1_key.pem
+
           ls ~ -ag
+          export;
 
           echo ----- SSH -----
           sudo ssh -i aws_user1_key.pem -o ConnectTimeout=10 -o StrictHostKeyChecking=no ubuntu@3.71.112.247 -- "
