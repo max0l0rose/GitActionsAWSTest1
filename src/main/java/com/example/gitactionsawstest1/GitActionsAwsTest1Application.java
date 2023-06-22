@@ -22,7 +22,7 @@ public class GitActionsAwsTest1Application {
 	@GetMapping()
 	@ResponseBody
 	String f() {
-		return "eeeeeee";
+		return "eeeeeee2222";
 	}
 
 	public static void main(String[] args) {
